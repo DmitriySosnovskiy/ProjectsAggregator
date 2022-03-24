@@ -1,6 +1,7 @@
 package ru.dnsosnovskiy.ProjectsAggregator.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dnsosnovskiy.ProjectsAggregator.dto.user.UserAddRequest;
@@ -14,10 +15,13 @@ public class UserControllerImpl implements UserController {
     @Autowired
     UserServiceImpl userService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Override
     public UserResponse addUser(UserAddRequest  userAddRequest) {
         User newUser = new User()
-                .setPassword(userAddRequest.getPassword())
+                .setPassword(passwordEncoder.encode(userAddRequest.getPassword()))
                 .setEmail(userAddRequest.getEmail())
                 .setFirstName(userAddRequest.getFirstName())
                 .setSecondName(userAddRequest.getSecondName())

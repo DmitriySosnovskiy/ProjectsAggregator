@@ -2,6 +2,7 @@ package ru.dnsosnovskiy.ProjectsAggregator.entity.user;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     private Long id;
 
     @Column(name = "password", nullable = false)

@@ -10,5 +10,6 @@ import javax.validation.Valid;
 
 public interface UserController {
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     UserResponse addUser(@RequestBody UserAddRequest userAddRequest);
 }
